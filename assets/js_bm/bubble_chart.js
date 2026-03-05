@@ -207,10 +207,10 @@ var griffalterCenters = { // Center locations of the bubbles.
   };
 
   var griffalterTitleX = { // X locations of the year titles.
-    'jung und hat Handy beim schlafen in griffweite': 100,
-    'jung und hat Handy beim schlafen nicht in griffweite': 400,
-    'Erwachsen und hat Handy beim schlafen in griffweite': 700,
-    'Erwachsen und hat Handy beim schlafen nicht in griffweite': 1000
+    'Jung hat Handy beim schlafen in griffweite': 150,
+    'Jung hat Handy beim schlafen nicht in griffweite': 450,
+    'Alt hat Handy beim schlafen in griffweite': 750,
+    'Alt hat Handy beim schlafen nicht in griffweite': 1020
   };
   // Achter Button: Verzicht
  
@@ -909,7 +909,7 @@ function moveToAgecat(alpha) {
 
   var fillColor = d3.scale.ordinal()
     .domain(['1','2','3', '4','5','6'])
-    .range(['#F7CAD0', '#ff006e', '#48CAE4', '#0096C7','#023E8A','#03045E']);
+    .range(['#F7CAD0', '#DB222A', '#A51A20', '#6E1115','#37090B','#000000']);
 
   /* Tooltip-Funktion*/
   function showDetail(d) {
