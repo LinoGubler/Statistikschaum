@@ -86,23 +86,23 @@ function bubbleChart() {
  
 var yearCenters = { // Center locations of the bubbles.
     
-    2021: { x: 240, y: height / 2 },
-    2022: { x: 320, y: height / 2 },
-    2023: { x: 430, y: height / 2 },
-    2024: { x: 540, y: height / 2 },
-    2025: { x: 650, y: height / 2 },
-    2026: { x: 750, y: height / 2 }
+    2021: { x: 340, y: height / 2 },
+    2022: { x: 420, y: height / 2 },
+    2023: { x: 530, y: height / 2 },
+    2024: { x: 640, y: height / 2 },
+    2025: { x: 750, y: height / 2 },
+    2026: { x: 810, y: height / 2 }
     
   };
 
   var yearTitleX = { // X locations of the year titles.
     
-    '2021': 80,
-    '2022': 220,
-    '2023': 400,
-    '2024': 560,
-    '2025': 720,
-    '2026': 950
+    '2021': 180,
+    '2022': 340,
+    '2023': 500,
+    '2024': 666,
+    '2025': 850,
+    '2026': 1050
   };
     
 
@@ -122,8 +122,8 @@ var agecatCenters = { // Center locations of the bubbles.
     '14 - 15 Jahre': 130,
     '16 - 17 Jahre': 400,
     '18 - 19 Jahre': 640,
-    '20 - 29 Jahre': 800,
-    'Älter als 30 Jahre': 940
+    '20 - 29 Jahre': 890,
+    'Älter als 30 Jahre': 1040
   };
     
     
@@ -191,10 +191,10 @@ var griffweiteCenters = { // Center locations of the bubbles.
   };
 
   var griffweiteTitleX = { // X locations of the year titles.
-    'Hat handy beim schlafen immer in griffweite': 100,
-    'Hat handy beim schlafen meistens in griffweite': 400,
-    'Hat handy beim schlafen meistens nicht in griffweite': 700,
-    'Hat handy beim schlafen nie in griffweite': 1000
+    'Hat Handy beim schlafen immer in griffweite': 100,
+    'Hat Handy beim schlafen meistens in griffweite': 400,
+    'Hat Handy beim schlafen meistens nicht in griffweite': 700,
+    'Hat Handy beim schlafen nie in griffweite': 1000
   };
   
     // Siebter Button: Griffalter
@@ -207,10 +207,25 @@ var griffalterCenters = { // Center locations of the bubbles.
   };
 
   var griffalterTitleX = { // X locations of the year titles.
-    'jung und hat handy beim schlafen in griffweite': 100,
-    'jung und hat handy beim schlafen nicht in griffweite': 400,
-    'Erwachsen und hat handy beim schlafen in griffweite': 700,
-    'Erwachsen und hat handy beim schlafen nicht in griffweite': 1000
+    'jung und hat Handy beim schlafen in griffweite': 100,
+    'jung und hat Handy beim schlafen nicht in griffweite': 400,
+    'Erwachsen und hat Handy beim schlafen in griffweite': 700,
+    'Erwachsen und hat Handy beim schlafen nicht in griffweite': 1000
+  };
+  // Achter Button: Verzicht
+ 
+var verzichtCenters = { // Center locations of the bubbles.
+    1: { x: 300, y: height / 2 },
+    2: { x: 500, y: height / 2 },
+    3: { x: 600, y: height / 2 },
+    4: { x: 800, y: height / 2 }
+  };
+
+  var verzichtTitleX = { // X locations of the year titles.
+    'jung und kann auf handy verzichten': 100,
+    'jung und kann nicht auf handy verzichten': 400,
+    'Erwachsen und kann auf handy verzichten': 700,
+    'Erwachsen und kann nicht auf handy verzichten': 1000
   };
        
     
@@ -285,7 +300,7 @@ var griffalterCenters = { // Center locations of the bubbles.
         
         griffalter: d.griffweitealter,
         
-        
+        verzicht: d.verzichtalter,
         
         x: Math.random() * 900,
         y: Math.random() * 800
@@ -385,6 +400,7 @@ var griffalterCenters = { // Center locations of the bubbles.
     hideSorgen();
     hideGriffweite();
     hideGriffalter();
+    hideVerzicht();
     
     force.on('tick', function (e) {
       bubbles.each(moveToCenter(e.alpha))
@@ -429,6 +445,7 @@ Die Positionierung basiert auf dem alpha Parameter des force layouts und wird kl
    hideSorgen();
    hideGriffweite();
    hideGriffalter();
+   hideVerzicht();
 
 
     force.on('tick', function (e) {
@@ -480,6 +497,7 @@ function moveToYear(alpha) {
    hideSorgen();
    hideGriffweite();
    hideGriffalter();
+   hideVerzicht();
 
 
     force.on('tick', function (e) {
@@ -512,7 +530,7 @@ function moveToAgecat(alpha) {
     agecat.enter().append('text')
       .attr('class', 'agecat')
       .attr('x', function (d) { return agecatTitleX[d]; })
-      .attr('y', 65)
+      .attr('y', 30)
       .attr('text-anchor', 'middle')
       .text(function (d) { return d; });
     }
@@ -531,6 +549,7 @@ function moveToAgecat(alpha) {
     hideSorgen();
     hideGriffweite();
     hideGriffalter();
+    hideVerzicht();
 
 
     force.on('tick', function (e) {
@@ -582,6 +601,7 @@ function moveToAgecat(alpha) {
     hideSorgen();
     hideGriffweite();
     hideGriffalter();
+    hideVerzicht();
 
 
     force.on('tick', function (e) {
@@ -633,6 +653,7 @@ function moveToAgecat(alpha) {
     hideScreentime();
     hideGriffweite();
     hideGriffalter();
+    hideVerzicht();
 
     force.on('tick', function (e) {
       bubbles.each(moveToSorgen(e.alpha))
@@ -664,7 +685,7 @@ function moveToAgecat(alpha) {
     sorgen.enter().append('text')
       .attr('class', 'sorgen')
       .attr('x', function (d) { return sorgenTitleX[d]; })
-      .attr('y', 65)
+      .attr('y', 35)
       .attr('text-anchor', 'middle')
       .text(function (d) { return d; });
     }    
@@ -685,6 +706,7 @@ function moveToAgecat(alpha) {
     hideScreentime();
     hideSorgen();
     hideGriffalter();
+    hideVerzicht();
 
     force.on('tick', function (e) {
       bubbles.each(moveToGriffweite(e.alpha))
@@ -734,6 +756,7 @@ function moveToAgecat(alpha) {
     hideScreentime();
     hideSorgen();
     hideGriffweite();
+    hideVerzicht(); 
 
     force.on('tick', function (e) {
       bubbles.each(moveToGriffalter(e.alpha))
@@ -771,7 +794,57 @@ function moveToAgecat(alpha) {
     }    
 
    
+    /* ------------------------------------------------------------------
+//
+// Verzicht
+//
+// -----------------------------------------------------------------*/
     
+  function splitBubblesintoVerzicht() {
+    showVerzicht();
+    hideYear();
+    hideSex();
+    hideAgecat();
+    hideScreentime();
+    hideSorgen();
+    hideGriffweite();
+    hideGriffalter();
+
+    force.on('tick', function (e) {
+      bubbles.each(moveToVerzicht(e.alpha))
+        .attr('cx', function (d) { return d.x; })
+        .attr('cy', function (d) { return d.y; });
+    });
+
+    force.start();
+  }
+
+  function moveToVerzicht(alpha) {
+    return function (d) {
+      var target = verzichtCenters[d.verzicht];
+      d.x = d.x + (target.x - d.x) * damper * alpha * 1.1;
+      d.y = d.y + (target.y - d.y) * damper * alpha * 1.1;
+    };
+  }
+
+  function hideVerzicht() {
+    svg.selectAll('.verzicht').remove();
+  }
+
+  function showVerzicht() {
+
+    var verzichtData = d3.keys(verzichtTitleX);
+    var verzicht = svg.selectAll('.verzicht')
+      .data(verzichtData);
+
+    verzicht.enter().append('text')
+      .attr('class', 'verzicht')
+      .attr('x', function (d) { return verzichtTitleX[d]; })
+      .attr('y', 65)
+      .attr('text-anchor', 'middle')
+      .text(function (d) { return d; });
+    }    
+
     
 //* ------------------------------------------------------------------
 //
@@ -804,6 +877,8 @@ function moveToAgecat(alpha) {
       splitBubblesintoGriffweite();
     } else if (displayName === 'griffalter') {
     splitBubblesintoGriffalter();
+    } else if (displayName === 'verzicht') {
+    splitBubblesintoVerzicht();
     } else {
       groupBubbles();
     }
@@ -853,11 +928,14 @@ function moveToAgecat(alpha) {
                   '<span class="name">Ich mache mir Sorgen um meine Daten: </span><span class="value">' +
                   d.sorgen +
                   '</span><br/>' +
-        '<span class="name">Ich habe mein handy beim schlafen in Griffweite: </span><span class="value">' +
+        '<span class="name">Ich habe mein Handy beim schlafen in Griffweite: </span><span class="value">' +
                   d.griffweite +
                   '</span><br/>' +
-        '<span class="name">Ich habe mein handy beim schlafen in Griffweite: </span><span class="value">' +
+        '<span class="name">Ich habe mein Handy beim schlafen in Griffweite: </span><span class="value">' +
                   d.griffalter +
+                  '</span><br/>' +
+        '<span class="name">Ich kann auf mein Handy verzichten: </span><span class="value">' +
+                  d.verzicht +
                   '</span><br/>' +
                   '<span class="name">"Umfragejahr": </span><span class="value">' +
                   d.year +
